@@ -16,7 +16,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; min-width: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+body { text-transform: lowercase; margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); overflow-x: clip; -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; height: auto; }
 figure { margin: 0; }
 p { margin: 0 0 1em; }
@@ -45,8 +45,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 /* hero */
 .hero { background: var(--blush); position: relative; overflow: hidden; }
 .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: clamp(48px, 7vw, 88px); padding-bottom: clamp(56px, 8vw, 104px); }
-.hero h1 { font-size: clamp(60px, 9vw, 128px); line-height: .9; color: var(--pink); text-shadow: 4px 4px 0 var(--ink); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
-.hero h1 em { display: block; font-style: normal; color: var(--honey); }
+.hero h1 { font-size: clamp(60px, 9vw, 128px); line-height: .9; color: var(--pink); }
+.hero h1 em { display: block; font-style: normal; color: var(--fig); }
 .hero .lede { font-size: clamp(19px, 2vw, 22px); font-weight: 500; max-width: 30ch; margin: 28px 0 28px; }
 .hero .actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .polas { position: relative; min-height: clamp(380px, 46vw, 600px); }
@@ -72,7 +72,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 /* sections */
 .section { padding: clamp(72px, 10vw, 120px) 0; }
 .title { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(32px, 5vw, 56px); }
-.title h2 { font-size: clamp(46px, 7vw, 88px); color: var(--pink); -webkit-text-stroke: 1.5px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink); }
+.title h2 { font-size: clamp(46px, 7vw, 88px); color: var(--pink); }
 .title p { margin: 0; max-width: 36ch; color: var(--muted); font-size: 18px; }
 
 /* the spread: real boards */
@@ -85,7 +85,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 
 /* holidays */
 .holidays { background: var(--honey); border-block: 2.5px solid var(--ink); }
-.holidays .title h2 { color: #fff; }
+.holidays .title h2 { color: var(--fig); }
 .holidays .title p { color: var(--ink); }
 .hol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .hol figure { margin: 0; background: #fff; border: 2px solid var(--ink); border-radius: 18px; overflow: hidden; box-shadow: 5px 5px 0 var(--ink); }
@@ -97,7 +97,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 
 /* menu board */
 .menu { background: var(--fig); color: #fff; }
-.menu .title h2 { color: var(--honey); text-shadow: 3px 3px 0 #000; -webkit-text-stroke: 1.5px #000; }
+.menu .title h2 { color: var(--honey); }
 .menu .title p { color: #f1d6e4; }
 .boards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(28px, 5vw, 64px); list-style: none; margin: 0 0 clamp(44px, 6vw, 72px); padding: 0; }
 .boards li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 20px 0; border-bottom: 2px dashed rgba(255,255,255,.25); }
@@ -138,12 +138,12 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 /* about */
 .about { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
 .about .pola { position: relative; width: min(100%, 400px); transform: rotate(-3deg); margin: 0 auto; }
-.about h2 { font-size: clamp(46px, 6vw, 76px); color: var(--pink); -webkit-text-stroke: 1.5px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink); margin-bottom: 20px; }
+.about h2 { font-size: clamp(46px, 6vw, 76px); color: var(--pink); margin-bottom: 20px; }
 .about p { font-size: 18.5px; }
 
 /* order */
 .order { background: var(--pink); color: #fff; border-top: 2.5px solid var(--ink); text-align: center; }
-.order h2 { font-size: clamp(60px, 10vw, 140px); color: var(--honey); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--ink); }
+.order h2 { font-size: clamp(60px, 10vw, 140px); color: var(--fig); }
 .order p { font-size: 20px; max-width: 40ch; margin: 22px auto 30px; }
 .order .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
 .order .mail { margin-top: 18px; font-weight: 800; }
