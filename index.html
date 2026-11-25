@@ -21,7 +21,6 @@
     <a class="logo" href="#top">serving <span>cheese</span></a>
     <ul>
       <li><a href="#boards">the boards</a></li>
-      <li><a href="#holidays">holidays</a></li>
       <li><a href="#menu">menu</a></li>
       <li><a href="#how">how it works</a></li>
     </ul>
@@ -58,31 +57,17 @@
     <div class="wrap">
       <div class="title">
         <h2 id="boards-title">the boards</h2>
-        <p>Real boards, made for real parties. Every one is built for its crowd and its occasion.</p>
+        <p>real boards for real parties, from birthdays to every holiday on the calendar. swipe through.</p>
       </div>
-      <div class="spread">
-        <figure class="shot" style="--r:-1deg"><img src="images/holiday-cookie-board.jpg" alt="Holiday board with decorated sugar cookies, green grapes, salami, raspberries, cranberries, and cheeses" width="1400" height="1050" loading="lazy"><span class="label">cookies + cheese</span></figure>
-        <figure class="shot" style="--r:1.2deg"><img src="images/tree-cuterie.jpg" alt="Board arranged as a Christmas tree from cucumbers, cheese cubes, tomatoes, and grapes, with a brie star and salami trunk" width="1050" height="1400" loading="lazy"><span class="label pink">tree-cuterie</span></figure>
-        <figure class="shot" style="--r:.6deg"><img src="images/pretzel-board.jpg" alt="Round board with soft pretzels, salami, blue cheese, pistachios, celery, radishes, and pickles beside a bottle of prosecco" width="1050" height="1400" loading="lazy"><span class="label">the pretzel situation</span></figure>
-        <figure class="shot" style="--r:-1.4deg"><img src="images/turkey-board.jpg" alt="Thanksgiving board arranged as a turkey with salami, deviled eggs, almonds, cheese, and peppers" width="1050" height="1400" loading="lazy"><span class="label pink">gobble gobble</span></figure>
-        <figure class="shot" style="--r:1deg"><img src="images/pretzel-round-board.jpg" alt="Round board with soft pretzels, salami, radishes, olives, cornichons, artichokes, and mustards" width="1284" height="1285" loading="lazy"><span class="label">pretzels + mustard</span></figure>
-        <figure class="shot" style="--r:-.8deg"><img src="images/santa-party-board.jpg" alt="Christmas party board with a Santa-face brie, salami, cheeses, and candy cane treats" width="1050" height="1400" loading="lazy"><span class="label pink">ho ho ho</span></figure>
+      <div class="gallery" tabindex="0" aria-label="board photos">
+        <figure class="slide"><img src="images/tree-cuterie.jpg" alt="Board arranged as a Christmas tree from cucumbers, cheese, tomatoes, and grapes" width="1050" height="1400" loading="lazy"><span class="label">christmas: tree-cuterie</span></figure>
+        <figure class="slide"><img src="images/turkey-pear-board.jpg" alt="Thanksgiving board with a turkey made from a pear, salami, and blueberries" width="1050" height="1400" loading="lazy"><span class="label pink">thanksgiving: gobble gobble</span></figure>
+        <figure class="slide"><img src="images/easter-board.jpg" alt="Easter board with macarons, salami roses, and a chocolate bunny" width="1284" height="1305" loading="lazy"><span class="label">easter: some bunny loves you</span></figure>
+        <figure class="slide"><img src="images/holiday-cookie-board.jpg" alt="Holiday board with decorated cookies, grapes, salami, raspberries, and cheeses" width="1400" height="1050" loading="lazy"><span class="label pink">cookies + cheese</span></figure>
+        <figure class="slide"><img src="images/pretzel-board.jpg" alt="Round board with soft pretzels, salami, blue cheese, pistachios, and pickles" width="1050" height="1400" loading="lazy"><span class="label">the pretzel situation</span></figure>
+        <figure class="slide"><img src="images/pretzel-round-board.jpg" alt="Round board with pretzels, salami, radishes, olives, and mustards" width="1284" height="1285" loading="lazy"><span class="label pink">pretzels + mustard</span></figure>
       </div>
-    </div>
-  </section>
-
-  <section class="section holidays" id="holidays" aria-labelledby="hol-title">
-    <div class="wrap">
-      <div class="title">
-        <h2 id="hol-title">every holiday gets a board</h2>
-        <p>Themed down to the last cracker, so your board is the thing everyone talks about.</p>
-      </div>
-      <div class="hol">
-        <figure><img src="images/tree-cuterie.jpg" alt="Christmas tree board" width="1050" height="1400" loading="lazy"><figcaption><b>christmas</b><span>Santa bries, cookie trees, candy canes everywhere.</span></figcaption></figure>
-        <figure><img src="images/turkey-pear-board.jpg" alt="Thanksgiving board with a turkey made from a pear and salami" width="1050" height="1400" loading="lazy"><figcaption><b>thanksgiving</b><span>A turkey made of salami, cheese, and one very brave pear.</span></figcaption></figure>
-        <figure><img src="images/easter-board.jpg" alt="Easter board in a flower-shaped dish with macarons, salami roses, and a chocolate bunny" width="1284" height="1305" loading="lazy"><figcaption><b>easter</b><span>Macarons, salami roses, and a chocolate bunny on guard.</span></figcaption></figure>
-        <figure><img src="images/birthday-brie-board.jpg" alt="Birthday board with a sprinkle-topped brie and candles" width="1120" height="1400" loading="lazy"><figcaption><b>birthdays</b><span>Candles in the brie. Obviously.</span></figcaption></figure>
-      </div>
+      <div class="gal-nav"><button class="arrow prev" type="button" aria-label="previous photo">&larr;</button><button class="arrow next" type="button" aria-label="next photo">&rarr;</button></div>
     </div>
   </section>
 
@@ -168,6 +153,11 @@
     catch (e) { cb.textContent = 'kendrahlee@gmail.com'; }
     setTimeout(() => { cb.textContent = 'copy email'; }, 2400);
   });
+  const g = document.querySelector('.gallery');
+  const step = () => { const sl = g.querySelector('.slide'); return sl ? sl.getBoundingClientRect().width + 20 : 300; };
+  document.querySelector('.prev').addEventListener('click', () => g.scrollBy({ left: -step(), behavior: 'smooth' }));
+  document.querySelector('.next').addEventListener('click', () => g.scrollBy({ left: step(), behavior: 'smooth' }));
+  g.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); g.scrollBy({ left: step(), behavior: 'smooth' }); } if (e.key === 'ArrowLeft') { e.preventDefault(); g.scrollBy({ left: -step(), behavior: 'smooth' }); } });
 }
 </script>
 </body>
