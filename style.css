@@ -211,3 +211,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 .crusts li { padding: 8px 16px; border: 2px solid var(--ink); border-radius: 999px; background: var(--honey); font-weight: 800; font-size: 15px; }
 .crusts li:nth-child(even) { background: #fff; }
 @media (max-width: 900px) { .dough-card { grid-template-columns: 1fr; } .loaf { max-width: 240px; } }
+
+.dip { margin-top: 22px; padding-top: 20px; border-top: 2px dashed rgba(42,20,32,.3); }
+.dip-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.dip-head b { font: 400 30px/1.1 var(--display); color: var(--fig); }
+.dip-head span { font-weight: 800; color: var(--pink-deep); }
+.dip p { margin: 6px 0 12px; color: var(--muted); font-size: 16px; }
+.dip-list li { background: #fff; font-size: 14px; padding: 6px 14px; }
+.dip-list li:nth-child(even) { background: #e9efd6; }
