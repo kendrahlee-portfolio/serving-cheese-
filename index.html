@@ -12,7 +12,14 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://servingcheese.com/images/serving-cheese-social.png">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FoodEstablishment","name":"serving cheese","url":"https://servingcheese.com/","image":"https://servingcheese.com/images/serving-cheese-social.png","logo":"https://servingcheese.com/images/serving-cheese-logo.png","description":"Themed cheese and charcuterie boards and grazing tables for parties around DC, Northern Virginia, and Maryland.","servesCuisine":"Charcuterie","areaServed":["Washington, DC","Northern Virginia","Maryland"],"founder":{"@type":"Person","name":"Kendra Lee","url":"https://www.kendrahlee.com/"},"sameAs":["https://www.kendrahlee.com/","https://social-lee.com"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FoodEstablishment","name":"serving cheese","url":"https://servingcheese.com/","image":"https://servingcheese.com/images/serving-cheese-social.png","logo":"https://servingcheese.com/images/serving-cheese-logo.png","description":"Themed cheese and charcuterie boards and grazing tables for parties around DC, Northern Virginia, and Maryland.","servesCuisine":"Charcuterie","areaServed":["Washington, DC","Northern Virginia","Maryland"],"founder":{"@type":"Person","name":"Kendra Lee","url":"https://www.kendrahlee.com/"},"sameAs":["https://www.kendrahlee.com/","https://social-lee.com"]}  const track = document.querySelector('.love-track');
+  if (track && track.children.length > 1) {
+    track.innerHTML += track.innerHTML;
+    [...track.children].slice(track.children.length / 2).forEach(li => li.setAttribute('aria-hidden', 'true'));
+    track.parentElement.classList.add('moving');
+  }
+}
+</script>
 <meta name="theme-color" content="#3d1029">
 <link rel="icon" href="images/serving-cheese-favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -162,6 +169,15 @@
     </div>
   </section>
 </main>
+
+<section class="love" aria-labelledby="love-title">
+  <h2 id="love-title" class="love-title">the reviews are in</h2>
+  <div class="love-viewport">
+    <ul class="love-track">
+      <li class="quote"><p>“there’s something about a cheese board from serving cheese that instantly brings my friends together. even when our night is anything but classy, setting out one of kendra’s boards makes us feel effortlessly put together… like we actually have our lives together for an hour or two.”</p><span>aaron, washington, dc</span></li>
+    </ul>
+  </div>
+</section>
 
 <section class="section order" id="order" aria-labelledby="order-title">
   <div class="wrap">

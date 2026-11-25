@@ -222,3 +222,17 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 
 .dough-facts { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; margin: -4px 0 18px; padding: 0; font-weight: 800; font-size: 15px; color: var(--fig); }
 .dough-facts li::before { content: "✦ "; color: var(--pink); }
+
+/* reviews bar */
+.love { background: var(--fig); color: #fff; padding: clamp(56px, 8vw, 88px) 0; border-top: 2.5px solid var(--ink); overflow: hidden; }
+.love-title { text-align: center; font-size: clamp(40px, 6vw, 68px); color: var(--honey); margin-bottom: 32px; }
+.love-viewport { overflow: hidden; }
+.love-track { display: flex; justify-content: center; gap: 22px; list-style: none; margin: 0; padding: 6px var(--gutter) 14px; }
+.love-viewport.moving .love-track { justify-content: flex-start; width: max-content; padding-left: 0; animation: love 45s linear infinite; }
+.love-viewport.moving:hover .love-track { animation-play-state: paused; }
+.quote { flex: 0 0 min(560px, 86vw); background: var(--paper); color: var(--ink); border: 2.5px solid #000; border-radius: 22px; padding: 26px 28px 24px; box-shadow: 6px 6px 0 var(--pink); transform: rotate(-1deg); }
+.quote:nth-child(even) { transform: rotate(1deg); box-shadow: 6px 6px 0 var(--honey); }
+.quote p { margin: 0 0 14px; font-size: 18px; line-height: 1.55; }
+.quote span { font-family: var(--display); font-size: 22px; color: var(--pink); }
+@keyframes love { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .love-viewport.moving { overflow-x: auto; } .love-viewport.moving .love-track { animation: none; } }
