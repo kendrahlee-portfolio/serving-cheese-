@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>serving cheese | boards that serve</title>
+<meta name="description" content="Cheese and charcuterie boards, boxes, and grazing tables by Kendra Lee, based in Falls Church, VA.">
+<meta property="og:title" content="serving cheese | boards that serve">
+<meta property="og:description" content="Cheese and charcuterie boards, boxes, and grazing tables, styled to steal the show.">
+<meta property="og:image" content="images/serving-cheese-social.png">
+<meta name="theme-color" content="#FAF9F6">
+<link rel="icon" href="images/serving-cheese-favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+/* v2: VOICE camp and generous / IDEA a board you can rearrange / PICTURE draggable doodle board in the hero
+   COLOUR social-lee hot pink + honey on paper, party themes swap the accents / TYPE Newsreader italic + Schibsted
+   LAYOUT tilted price tags, a fine-print drawer, sticker badge */
+:root{color-scheme:light;--pop:#ff1ba7;--pop2:#f2c14e;--rose:var(--pop)}
+body{transition:background-color .4s}
+.ticker{background:var(--pop2);transition:background .4s}
+.ticker b{color:var(--pop)}
+.sticker{position:absolute;right:max(5vw,20px);top:clamp(90px,12vw,150px);width:clamp(110px,12vw,150px);aspect-ratio:1;z-index:2;pointer-events:none}
+.sticker svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.sticker .dot{position:absolute;inset:30%;border-radius:50%;background:var(--pop);display:grid;place-items:center;color:#fff;font:italic 500 22px var(--serif)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.doodle{pointer-events:auto;cursor:grab;touch-action:none;transition:filter .2s}
+.doodle:active{cursor:grabbing;filter:drop-shadow(0 6px 0 rgba(52,53,58,.15))}
+.doodle.dragged{animation:none}
+.psst{font-family:var(--serif);font-style:italic;color:var(--pop);font-size:19px;transform:rotate(-2deg);display:inline-block;margin-top:22px}
+.themes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.themes button{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px 0 8px;border-radius:999px;border:1.5px solid var(--ink);background:#fff;font:600 14px var(--sans);color:var(--ink);cursor:pointer}
+.themes button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.themes i{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--a) 50%,var(--b) 50%);border:1.5px solid var(--ink)}
+.party{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:center}
+.party h2{font-size:clamp(44px,6vw,76px)}
+.board{position:relative;aspect-ratio:5/4;border-radius:28px;background:#c99a6b;border:1.5px solid var(--ink);box-shadow:10px 10px 0 var(--ink);overflow:hidden}
+.board::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 22px,rgba(0,0,0,.05) 22px 24px)}
+.board span{position:absolute;border:1.5px solid var(--ink);transition:background .4s}
+.bw1{left:8%;top:12%;width:30%;height:26%;background:var(--pop2);clip-path:polygon(0 100%,100% 100%,100% 0)}
+.bw2{left:44%;top:10%;width:20%;aspect-ratio:1;border-radius:50%;background:#fff8ec}
+.bw3{left:70%;top:14%;width:22%;height:34%;border-radius:40% 60% 50% 50%;background:var(--pop)}
+.bw4{left:10%;top:52%;width:26%;aspect-ratio:1;border-radius:50%;background:var(--pop)}
+.bw5{left:40%;top:46%;width:24%;height:40%;border-radius:12px;background:#f3e2c4}
+.bw6{left:68%;top:58%;width:24%;height:28%;border-radius:50% 50% 45% 55%;background:var(--pop2)}
+.tags{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
+.tag{position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:18px 18px 18px 18px;padding:30px 24px 26px;transform:rotate(var(--r,0deg));transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.tag:hover{transform:rotate(0) translateY(-4px)}
+.tag::before{content:"";position:absolute;top:14px;right:16px;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper)}
+.tag h3{font-size:34px;margin-bottom:6px}
+.tag .price{display:inline-block;font:800 22px var(--sans);letter-spacing:-.02em;background:var(--pop2);padding:2px 10px;border-radius:8px;margin:6px 0 12px;white-space:nowrap}
+.tag p{margin:0 0 10px;font-size:15.5px}
+.tag .best{font-size:14px;color:var(--graphite);margin:0}
+.big-note{margin-top:22px;color:var(--graphite);font-size:15px}
+.touches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
+.touches li{padding:22px 20px 8px 0}
+.touches li+li{padding-left:20px;border-left:1px solid var(--rule)}
+.touches b{display:block;font:italic 500 26px/1.15 var(--serif);margin-bottom:6px}
+.touches span{color:var(--graphite);font-size:15px}
+.fine{border-top:1.5px solid var(--ink)}
+.fine details{border-bottom:1px solid var(--rule)}
+.fine summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font:italic 500 28px var(--serif)}
+.fine summary::-webkit-details-marker{display:none}
+.fine summary::after{content:"+";font:400 30px var(--sans);color:var(--pop);transition:transform .3s}
+.fine details[open] summary::after{transform:rotate(45deg)}
+.fine ul{margin:0 0 22px;padding-left:20px}
+.fine li{margin-bottom:6px}
+.fine li::marker{color:var(--pop)}
+.mail{font-weight:600}
+@media(max-width:860px){.sticker{display:none}.party{grid-template-columns:1fr}.tags{grid-template-columns:1fr}.touches{grid-template-columns:1fr 1fr}.touches li,.touches li+li{padding:18px 12px 18px 0;border-left:0;border-bottom:1px solid var(--rule)}}
+@media(prefers-reduced-motion:reduce){.sticker svg{animation:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="serving cheese, home">serving <span class="circled draw">cheese<svg class="ring" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><path pathLength="600" d="M14 38 C 10 12, 110 0, 172 10 C 204 18, 200 56, 140 62 C 80 68, 16 60, 18 30"/></svg></span></a>
+    <ul>
+      <li><a href="#menu">the menu</a></li>
+      <li><a href="#displays">grazing displays</a></li>
+      <li><a href="#how">how it works</a></li>
+      <li><a href="#about">about</a></li>
+    </ul>
+    <a class="btn btn-solid" href="#inquire">start an order</a>
+  </div>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <div class="sticker" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="cp" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text font-family="Schibsted Grotesk, sans-serif" font-weight="700" font-size="19" letter-spacing="3" fill="#34353a"><textPath href="#cp">now booking ✦ boards ✦ grazing tables ✦ </textPath></text></svg><div class="dot">yes!</div></div>
+    <div class="doodles" aria-hidden="true">
+      <svg class="doodle d1" viewBox="0 0 120 100"><path class="fill-honey" d="M8 82 L104 82 L104 44 L8 82 Z"/><path class="fill-honey" d="M8 82 L104 44 L70 18 Z"/><circle cx="62" cy="66" r="6"/><circle cx="84" cy="58" r="4"/><circle cx="72" cy="40" r="3.5"/></svg>
+      <svg class="doodle d2" viewBox="0 0 100 110"><path d="M50 8 C 52 18, 56 22, 62 24"/><circle class="fill-fig" cx="38" cy="36" r="12"/><circle class="fill-fig" cx="62" cy="36" r="12"/><circle class="fill-fig" cx="50" cy="56" r="12"/><circle class="fill-fig" cx="28" cy="58" r="11"/><circle class="fill-fig" cx="72" cy="58" r="11"/><circle class="fill-fig" cx="40" cy="78" r="11"/><circle class="fill-fig" cx="60" cy="78" r="11"/><circle class="fill-fig" cx="50" cy="97" r="10"/></svg>
+      <svg class="doodle d3" viewBox="0 0 110 90"><ellipse class="fill-olive" cx="44" cy="52" rx="26" ry="20" transform="rotate(-20 44 52)"/><circle class="fill-blush" cx="34" cy="48" r="7"/><ellipse class="fill-olive" cx="78" cy="34" rx="20" ry="15" transform="rotate(25 78 34)"/><path d="M60 14 C 72 6, 90 6, 100 14"/></svg>
+      <svg class="doodle d4" viewBox="0 0 90 90"><path class="fill-blush" d="M14 20 Q14 12 22 12 L68 12 Q76 12 76 20 L76 68 Q76 76 68 76 L22 76 Q14 76 14 68 Z"/><circle cx="32" cy="32" r="2.5"/><circle cx="58" cy="32" r="2.5"/><circle cx="45" cy="45" r="2.5"/><circle cx="32" cy="58" r="2.5"/><circle cx="58" cy="58" r="2.5"/></svg>
+    </div>
+    <div class="wrap">
+      <h1>boards that <span class="circled draw">serve.<svg class="ring" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><path pathLength="600" d="M14 38 C 10 12, 110 0, 172 10 C 204 18, 200 56, 140 62 C 80 68, 16 60, 18 30"/></svg></span></h1>
+      <p class="lede">Cheese and charcuterie boards, boxes, and grazing tables, styled to steal the show. Made by Kendra Lee in Falls Church, VA.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="#inquire">start an order</a>
+        <a class="btn" href="#menu">see the menu</a>
+      </div>
+      <span class="psst">psst: drag the snacks around. arrange your own board.</span>
+    </div>
+  </header>
+
+  <div class="ticker" aria-hidden="true"><div>
+    <span>brie-lliant</span><b>✦</b><span>more is more</span><b>✦</b><span>always a little something pink</span><b>✦</b><span>the board is the centerpiece</span><b>✦</b><span>cheese, but make it fashion</span><b>✦</b>
+    <span>brie-lliant</span><b>✦</b><span>more is more</span><b>✦</b><span>always a little something pink</span><b>✦</b><span>the board is the centerpiece</span><b>✦</b><span>cheese, but make it fashion</span><b>✦</b>
+  </div></div>
+
+  <section class="section" id="party" aria-labelledby="party-title">
+    <div class="wrap party">
+      <div>
+        <h2 id="party-title">your party, your colors</h2>
+        <p>Black and gold for a promotion. Pastels for a shower. All the colors for Pride. Every display is styled to your theme, down to the fruit. Try it:</p>
+        <div class="themes" role="group" aria-label="Preview party colors">
+          <button type="button" aria-pressed="true" data-a="#ff1ba7" data-b="#f2c14e" style="--a:#ff1ba7;--b:#f2c14e"><i></i>hot pink</button>
+          <button type="button" aria-pressed="false" data-a="#1f1f22" data-b="#f0b90b" style="--a:#1f1f22;--b:#f0b90b"><i></i>black and gold</button>
+          <button type="button" aria-pressed="false" data-a="#8fb36b" data-b="#f7c6d4" style="--a:#8fb36b;--b:#f7c6d4"><i></i>garden party</button>
+          <button type="button" aria-pressed="false" data-a="#3b5bdb" data-b="#ffd43b" style="--a:#3b5bdb;--b:#ffd43b"><i></i>bold and bright</button>
+        </div>
+      </div>
+      <div class="board" role="img" aria-label="An illustrated board whose accents change with the chosen party colors"><span class="bw1"></span><span class="bw2"></span><span class="bw3"></span><span class="bw4"></span><span class="bw5"></span><span class="bw6"></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="menu" aria-labelledby="menu-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="menu-title">the menu</h2>
+        <p>Four ways to be served. Every board is built around your crowd, your diet needs, and the vibe you're going for.</p>
+      </div>
+      <ul class="menu">
+        <li class="item i1"><h3>the snack</h3><div class="for">for 2 to 4</div><p>Date night, a hostess gift, or a Tuesday that deserves better.</p></li>
+        <li class="item i2"><h3>the hostess</h3><div class="for">for 10 to 15</div><p>Showers, birthdays, watch parties, and any night you'd rather mingle than slice cheese.</p></li>
+        <li class="item i3"><h3>the main event</h3><div class="for">grazing tables, 25 and up</div><p>Weddings, launches, Pride parties, and the moments everyone posts about. A full table, styled as the centerpiece.</p></li>
+        <li class="item i4"><h3>the boardroom</h3><div class="for">corporate</div><p>Office parties, client gifts, and meetings that need a win before anyone opens a laptop.</p></li>
+      </ul>
+      <p class="menu-note">Pricing depends on size, date, and the good stuff you choose. Ask for a quote and you'll hear back within a couple of days.</p>
+    </div>
+  </section>
+
+  <section class="section" id="displays" aria-labelledby="displays-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="displays-title">grazing displays</h2>
+        <p>For big moments and big crowds. Setup, styling, and a curated spread of meats, cheeses, and accompaniments are always included.</p>
+      </div>
+      <div class="tags">
+        <article class="tag" style="--r:-1.4deg"><h3>the gathering</h3><div class="price">$500&ndash;$700</div><p>Generous portions of familiar favorites: classic cheeses, crowd-pleasing cured meats, seasonal fruit, and clean styling.</p><p class="best">Best for relaxed, cocktail-style grazing.</p></article>
+        <article class="tag" style="--r:1deg"><h3>the celebration</h3><div class="price">$750&ndash;$950</div><p>More variety and polish: premium meats, a broader cheese range, fig jam, honey, specialty crackers, and dried fruit.</p><p class="best">Best when the board is part of the look.</p></article>
+        <article class="tag" style="--r:-.6deg"><h3>the showcase</h3><div class="price">$1,000&ndash;$1,100+</div><p>The focal point: artisan cheeses, premium charcuterie, gourmet extras, layered styling, and custom signage.</p><p class="best">Best for a standout that photographs beautifully.</p></article>
+      </div>
+      <p class="big-note">Example pricing for about 80 guests. Every quote is custom to your headcount and menu.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="touch-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2 id="touch-title">personal touches</h2></div>
+      <ul class="touches">
+        <li><b>your theme</b><span>Colors, fruit, and florals styled to match the occasion.</span></li>
+        <li><b>your favorites</b><span>Tell me the cheeses and meats you love and they're in.</span></li>
+        <li><b>your memories</b><span>Photos, insignia, or keepsakes worked right into the display.</span></li>
+        <li><b>your diet</b><span>Dietary needs handled, so every guest gets to graze.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2 id="how-title">how it works</h2></div>
+      <ol class="steps">
+        <li><h3>tell me the plan</h3><p>The date, the headcount, any allergies, and the energy: cozy, chic, or full drama.</p></li>
+        <li><h3>I build the board</h3><p>Cheeses, cured meats, fruit, sweets, and the details that make people stop and take a photo.</p></li>
+        <li><h3>you get the compliments</h3><p>Pick up or delivery, ready to set down and enjoy. Taking full credit is allowed.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="fine-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2 id="fine-title">the fine print</h2><p>The boring-but-important bits, tucked away until you need them.</p></div>
+      <div class="fine">
+        <details><summary>booking and payment</summary><ul><li>A 50% non-refundable deposit secures your date.</li><li>The final balance is due the day before your event.</li><li>Events booked within 3 days are paid in full at booking.</li></ul></details>
+        <details><summary>delivery and setup</summary><ul><li>Delivery windows are coordinated in advance.</li><li>Setup usually takes about 30 minutes, depending on the package.</li><li>You provide the table space and access to the event area.</li><li>The serving tray and display pieces are included, and yours to keep.</li></ul></details>
+        <details><summary>food and freshness</summary><ul><li>Displays are made to be enjoyed right away.</li><li>For food safety, nothing should sit unrefrigerated for more than 2 hours.</li><li>Ingredients may be swapped based on what's in season.</li></ul></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title" style="padding-top:0">
+    <div class="wrap about">
+      <h2 id="about-title">hi, i'm kendra</h2>
+      <div>
+        <p>By day I'm a marketing executive. By night, and most weekends, I'm building boards for the people I love. serving cheese is what happens when you take both seriously.</p>
+        <p>I believe a good board does what a good party does: brings people together, looks a little extra, and leaves everyone happier than they arrived.</p>
+        <span class="note">and yes, there's always a little something pink.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="inquire" id="inquire">
+  <div class="wrap">
+    <h2>ready to be <span class="circled draw">served?<svg class="ring" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><path pathLength="600" d="M14 38 C 10 12, 110 0, 172 10 C 204 18, 200 56, 140 62 C 80 68, 16 60, 18 30"/></svg></span></h2>
+    <p>Send the date, headcount, and which board you're eyeing. I'll reply with ideas and a quote.</p>
+    <div class="actions">
+      <a class="btn btn-solid" href="mailto:kendrahlee@gmail.com?subject=serving%20cheese%20order%20request">email to order</a>
+      <button class="btn copy" type="button">copy email</button>
+    </div>
+    <p class="mail" style="margin-top:16px;font-size:16px">kendrahlee@gmail.com</p>
+    <div class="foot"><span>serving cheese</span><span>Falls Church, VA</span><span>a sister to <a href="https://kendrahlee.com">kendrahlee.com</a> and <a href="https://social-lee.com">social-lee.com</a></span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.draw');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:0.6});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<script>
+{
+  const root=document.documentElement;
+  const btns=[...document.querySelectorAll('.themes button')];
+  btns.forEach(b=>b.addEventListener('click',()=>{root.style.setProperty('--pop',b.dataset.a);root.style.setProperty('--pop2',b.dataset.b);btns.forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));}));
+  const cb=document.querySelector('.copy');
+  if(cb)cb.addEventListener('click',async()=>{try{await navigator.clipboard.writeText('kendrahlee@gmail.com');cb.textContent='copied. talk soon!';}catch(e){cb.textContent='kendrahlee@gmail.com';}setTimeout(()=>cb.textContent='copy email',2400);});
+  document.querySelectorAll('.doodle').forEach(d=>{
+    let sx=0,sy=0,ox=0,oy=0,drag=false;
+    d.addEventListener('pointerdown',e=>{drag=true;d.setPointerCapture(e.pointerId);d.classList.add('dragged');sx=e.clientX;sy=e.clientY;const m=new DOMMatrixReadOnly(getComputedStyle(d).transform);ox=m.m41;oy=m.m42;});
+    d.addEventListener('pointermove',e=>{if(!drag)return;d.style.transform=`translate(${ox+e.clientX-sx}px,${oy+e.clientY-sy}px) rotate(-4deg)`;});
+    d.addEventListener('pointerup',()=>{drag=false;});
+  });
+}
+</script>
+</body>
+</html>
