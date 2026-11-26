@@ -244,3 +244,17 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1; marg
 .wokl-links { margin: 0; font-weight: 700; color: rgba(255,255,255,.35); }
 .foot .wokl-links a { color: #ff8fcb; text-underline-offset: 4px; }
 .foot-note { margin: 4px 0 0; }
+
+/* events */
+.events { background: var(--blush); }
+.events-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.events-copy h2 { font-size: clamp(46px, 7vw, 88px); color: var(--pink); margin-bottom: 18px; }
+.events-copy p { font-size: 18px; max-width: 34ch; margin: 0 0 14px; }
+.events-copy .events-note { font-weight: 800; color: var(--fig); }
+.events-copy .btn { margin-top: 12px; }
+.events-photos { position: relative; display: flex; align-items: flex-start; }
+.events-photos .slide { flex: none; }
+.ev-main { width: min(360px, 62%); transform: rotate(-3deg); z-index: 1; }
+.ev-side { width: min(250px, 44%); margin-left: -40px; margin-top: 90px; transform: rotate(4deg); z-index: 2; }
+.ev-side img { aspect-ratio: 9/14; }
+@media (max-width: 800px) { .events-grid { grid-template-columns: 1fr; } .ev-main { width: 60%; } .ev-side { width: 46%; margin-left: -24px; margin-top: 60px; } }
